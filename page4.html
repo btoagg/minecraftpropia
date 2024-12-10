@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobs en Minecraft</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-image: url('https://external-preview.redd.it/DOtHVe4vSBCNuvljQeSW163LNsOMFydpNdZoBwfW1mo.png?auto=webp&s=e20c094dba613415866db45c32faf4c51567975c');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            font-family: Arial, sans-serif;
+            color: white;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            margin-top: 50px;
+            text-align: center;
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 20px;
+            border-radius: 10px;
+            width: 80%;
+            max-width: 600px;
+        }
+        .mob-card img {
+            width: 100%;
+            max-height: 300px;
+            border-radius: 5px;
+            margin-bottom: 15px;
+        }
+        .arrows button {
+            background: none;
+            border: 1px solid white;
+            color: white;
+            font-size: 20px;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            margin: 10px;
+        }
+        .arrows button:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+        .navigation-buttons button {
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="mob-card">
+            <img id="mob-image" src="" alt="Mob">
+            <h3 id="mob-title"></h3>
+            <p id="mob-description"></p>
+        </div>
+        <div class="arrows">
+            <button onclick="changeMob(-1)">⬅</button>
+            <button onclick="changeMob(1)">➡</button>
+        </div>
+        <div class="navigation-buttons">
+            <a href="index.html"><button class="btn btn-info">Inicio</button></a>
+            <a href="page3.html"><button class="btn btn-success">Siguiente</button></a>
+            <a href="page3.html"><button class="btn btn-danger">Anterior</button></a>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        const mobs = [
+            {
+                name: "Warden",
+                image: "https://staticg.sportskeeda.com/editor/2022/06/be43a-16558266725168-1920.jpg?w=640",
+                description: "El Warden es uno de los mobs más peligrosos. Su fuerza y capacidad para detectar vibraciones lo hacen letal."
+            },
+            {
+                name: "Wither",
+                image: "https://static.wikia.nocookie.net/minecraft_es_gamepedia/images/a/aa/Wither.png/revision/latest?cb=20201114135558",
+                description: "El Wither es un jefe poderoso que lanza calaveras explosivas y causa daño masivo a su alrededor."
+            },
+            {
+                name: "Oveja",
+                image: "https://static.wikia.nocookie.net/minecraft_gamepedia/images/e/e2/White_Sheep_JE3_BE6.png/revision/latest?cb=20190809163123",
+                description: "Las ovejas son mobs pasivos que solo sirven para obtener lana y comida. Son totalmente inofensivas."
+            },
+            {
+                name: "Vaca",
+                image: "https://static.wikia.nocookie.net/minecraft_es_gamepedia/images/8/84/Cow.png/revision/latest?cb=20201112133105",
+                description: "Las vacas son mobs amigables que proveen cuero y leche, siendo completamente pacíficas."
+            }
+        ];
+
+        let currentMobIndex = 0;
+
+        function displayMob(index) {
+            const mob = mobs[index];
+            document.getElementById('mob-image').src = mob.image;
+            document.getElementById('mob-title').textContent = mob.name;
+            document.getElementById('mob-description').textContent = mob.description;
+        }
+
+        function changeMob(direction) {
+            currentMobIndex = (currentMobIndex + direction + mobs.length) % mobs.length;
+            displayMob(currentMobIndex);
+        }
+
+        // Inicializa el primer mob
+        displayMob(currentMobIndex);
+    </script>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

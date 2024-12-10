@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comidas en Minecraft</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-image: url('https://www.xtrafondos.com/wallpapers/resized/creeper-de-minecraft-3411.jpg?s=large');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            font-family: Arial, sans-serif;
+            color: white;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            margin-top: 50px;
+            text-align: center;
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 20px;
+            border-radius: 10px;
+            width: 80%;
+            max-width: 600px;
+        }
+        .food-card img {
+            width: 100%;
+            max-height: 300px;
+            border-radius: 5px;
+            margin-bottom: 15px;
+        }
+        .arrows button {
+            background: none;
+            border: 1px solid white;
+            color: white;
+            font-size: 20px;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            margin: 10px;
+        }
+        .arrows button:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+        .navigation-buttons button {
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="food-card">
+            <img id="food-image" src="" alt="Comida">
+            <h3 id="food-title"></h3>
+            <p id="food-description"></p>
+        </div>
+        <div class="arrows">
+            <button onclick="changeFood(-1)">⬅</button>
+            <button onclick="changeFood(1)">➡</button>
+        </div>
+        <div class="navigation-buttons">
+            <a href="index.html"><button class="btn btn-info">Inicio</button></a>
+            <a href="page3.html"><button class="btn btn-success">Siguiente</button></a>
+            <a href="page3.html"><button class="btn btn-danger">Anterior</button></a>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        const foods = [
+            {
+                name: "Manzana Encantada",
+                image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT989agWXLhOgZ2M5FlISb5X2jZ2y0yoruamw&s",
+                description: "La manzana encantada es un objeto de alto valor que otorga efectos de curación y potenciación cuando se consume."
+            },
+            {
+                name: "Pastel",
+                image: "https://static.wikia.nocookie.net/minecraft_gamepedia/images/5/53/Cake_JE4.png/revision/latest/scale-to-width/360?cb=20200518185831",
+                description: "El pastel es un alimento que se puede comer en porciones y es muy útil para restaurar hambre en Minecraft."
+            },
+            {
+                name: "Sopa de Hongos",
+                image: "https://static.wikia.nocookie.net/minecraft_gamepedia/images/e/e0/Mushroom_Stew_JE2_BE2.png/revision/latest?cb=20190505052018",
+                description: "La sopa de hongos es un alimento que se puede obtener en el mundo de Minecraft utilizando hongos rojos y un tazón."
+            },
+            {
+                name: "Galleta",
+                image: "https://static.wikia.nocookie.net/minecraft_gamepedia/images/b/b3/Cookie_JE2_BE2.png/revision/latest/thumbnail/width/360/height/360?cb=20190505051355",
+                description: "Las galletas son un alimento sencillo que se puede crear con trigo y cacao, ideal para restaurar hambre."
+            }
+        ];
+
+        let currentFoodIndex = 0;
+
+        function displayFood(index) {
+            const food = foods[index];
+            document.getElementById('food-image').src = food.image;
+            document.getElementById('food-title').textContent = food.name;
+            document.getElementById('food-description').textContent = food.description;
+        }
+
+        function changeFood(direction) {
+            currentFoodIndex = (currentFoodIndex + direction + foods.length) % foods.length;
+            displayFood(currentFoodIndex);
+        }
+
+        // Inicializa la primera comida
+        displayFood(currentFoodIndex);
+    </script>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

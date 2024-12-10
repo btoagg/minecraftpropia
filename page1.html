@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crafteos de Minecraft</title>
+    <!-- Vinculación con Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('https://img.freepik.com/fotos-premium/enigmatico-telon-fondo-oscuro-inspirado-minecraft-mundo-minecraft_1057260-562.jpg?w=1060');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: white; /* Texto en blanco para mejor visibilidad */
+        }
+        .container {
+            margin-top: 50px;
+            background-color: rgba(0, 0, 0, 0.7); /* Fondo semi-transparente para contraste */
+            padding: 20px;
+            border-radius: 10px;
+        }
+        h1 {
+            color: #FFD700; /* Texto en dorado */
+        }
+        .carousel-item img {
+            width: 200px; /* Ajustar el tamaño de la imagen */
+            height: 200px; /* Ajustar el tamaño de la imagen */
+            object-fit: cover; /* Mantener las proporciones al cortar la imagen */
+            margin: 0 auto; /* Centrar la imagen */
+        }
+        .btn-ver-crafteo {
+            background-color: #FFC107; /* Color amarillo */
+            color: black;
+        }
+        .btn-ver-crafteo:hover {
+            background-color: #FFA000; /* Amarillo más oscuro al pasar el mouse */
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container text-center">
+        <h1>Crafteos Comunes en Minecraft</h1>
+
+        <!-- Carrusel de imágenes -->
+        <div id="crafteoCarrusel" class="carousel slide" data-bs-ride="false">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="imagenes/espadamaderamodelo.jpg" class="d-block" alt="Espada de Madera">
+                </div>
+                <div class="carousel-item">
+                    <img src="imagenes/antorchamodelo.png" class="d-block" alt="Antorchas">
+                </div>
+                <div class="carousel-item">
+                    <img src="imagenes/mesacrafteomodelo.jpg" class="d-block" alt="Mesa de trabajo">
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#crafteoCarrusel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Anterior</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#crafteoCarrusel" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Siguiente</span>
+            </button>
+        </div>
+
+        <div class="mt-4">
+            <!-- Botón de "Ver Crafteo" -->
+            <button class="btn btn-ver-crafteo m-2" id="verCrafteoBtn" data-bs-toggle="modal" data-bs-target="#verCrafteoModal">Ver Crafteo</button>
+        </div>
+
+        <div class="mt-4">
+            <a href="page2.html"><button class="btn btn-success m-2">Siguiente</button></a>
+            <a href="index.html"><button class="btn btn-info m-2">Inicio</button></a>
+            <a href="index.html"><button class="btn btn-danger m-2">Regresar</button></a>
+        </div>
+    </div>
+
+    <!-- Modal para ver imagen grande -->
+    <div class="modal fade" id="verCrafteoModal" tabindex="-1" aria-labelledby="verCrafteoModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="verCrafteoModalLabel">Crafteo Grande</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                </div>
+                <div class="modal-body">
+                    <img id="imagenGrande" src="" class="d-block w-100" alt="Imagen Crafteo">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Vinculación con Bootstrap JS y Popper.js -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+
+    <script>
+        // Lista de imágenes de crafteos (separados de las imágenes del carrusel)
+        const imagenesCrafteo = [
+            "imagenes/espadamadera.png",  // Crafteo de la espada
+            "imagenes/antorcha.png", // Crafteo de antorchas
+            "imagenes/mesacrafeteomodelo.png" // Crafteo de la mesa de trabajo
+        ];
+
+        // Función para actualizar la imagen en el modal según la imagen activa en el carrusel
+        document.getElementById('verCrafteoBtn').addEventListener('click', function() {
+            // Obtener el índice de la imagen activa en el carrusel
+            const imagenActiva = document.querySelector('.carousel-item.active img');
+            const srcImagen = imagenActiva.src; // Obtener la URL de la imagen activa
+
+            // Determinar el índice de la imagen activa para cambiar el crafteo
+            let indiceImagen;
+            if (srcImagen.includes("espadamadera")) {
+                indiceImagen = 0;  // Espada
+            } else if (srcImagen.includes("antorchamodelo")) {
+                indiceImagen = 1;  // Antorchas
+            } else if (srcImagen.includes("mesacrafteo")) {
+                indiceImagen = 2;  // Mesa de trabajo
+            }
+
+            // Cambiar la imagen del modal según el índice
+            const imagenModal = document.getElementById('imagenGrande');
+            imagenModal.src = imagenesCrafteo[indiceImagen];
+        });
+    </script>
+
+</body>
+</html>
